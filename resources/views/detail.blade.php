@@ -50,7 +50,7 @@
     </div>
     @if($product->quan == 0)
     <div>
-      
+
       <p>在庫がありません。</p>
     </div>
     @endif
@@ -107,8 +107,6 @@
   </div>
   @endforeach
 </div>
-
-
 
 
 
