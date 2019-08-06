@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\cron;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -14,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        \App\Console\Commands\cron::class,
     ];
 
     /**
@@ -26,6 +28,18 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        // $schedule
+        // ->command('command:send_report')
+        // ->withoutOverlapping()
+        // ->weekdays()
+        // ->dailyAt('10:00');
+        // $schedule->command('command:send_report')
+        // ->weekdays()->dailyAt('10:00');
+        $schedule->command('command:send_report')
+        ->withoutOverlapping()
+        ->weekdays()
+        ->dailyAt('10:00')
+        ->timezone('Asia/Tokyo');
     }
 
     /**

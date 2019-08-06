@@ -20,15 +20,5 @@ class CreateShoppingcartTable extends Migration
             $table->primary(['identifier', 'instance']);
         });
     }
-    /**
-     * Reverse the migrations.
-     */
-     /*
-    public function down()
-    {
-        Schema::drop(config('cart.database.table'));
-    }
-    */
-
-
+    
 }

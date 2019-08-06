@@ -20,17 +20,9 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('title');
             $table->string('text');
-            
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('contacts');
-    }
+    
 }

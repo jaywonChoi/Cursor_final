@@ -93,6 +93,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 
   <!-- Footer -->
   <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    
     <div class="w3-row-padding">
       <div class="w3-col s4">
         <h4>Contact</h4>

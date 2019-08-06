@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Session;
+use App\IPs;
+
+
 
 
 class CursorController extends Controller
@@ -13,7 +16,9 @@ class CursorController extends Controller
     //
     public function index()
     {
-      //
+
+      //$this->ip_read();
+      ///////////////////////////////////////////////////
       $products = Product::orderBy('updated_at','desc');
       $products = Product::all()->take(4);
       return view('Cursor',compact('products'));
@@ -39,7 +44,51 @@ class CursorController extends Controller
       return view('shop',compact('products'));
     }
 
+    public function ip_read()
+    {
+      $put_ips_info = new IPs();
+      
+      $timestamp = time();
+      if (date('N',$timestamp)=== '1') {
+        $today = date("Y-m-d",strtotime("-3 days"));
+        //echo "Today is report:".$today;
+        $put_ips_info->report_date = $today;
+        //echo "<br />";
 
+      }
+      else {
+        $today = date("Y-m-d",strtotime("-1 days"));
+        //echo "Today is report:".$today;
+        $put_ips_info->report_date = $today;
+        //echo "<br />";
+
+      }
+
+      $get_ip = file('/etc/httpd/logs/access_log.'.$today,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
+      $log_put_arr = array();
+      foreach ($get_ip as $key => $get_ips) {
+        preg_match('/^(\S+)/',$get_ips, $matches);
+        array_push($log_put_arr,$matches[0]);
+
+        }
+
+        $PV= count($log_put_arr);
+        $put_ips_info->PV_num = $PV;
+        $ip_unique = array_unique($log_put_arr);
+        $UU= count($ip_unique);
+        $put_ips_info->UU_num =$UU;
+
+         $orders = DB::table('orders')
+        ->select(DB::raw('count(id) as order_count'))
+        ->where('created_at','like','2019-07-05%')->get();
+
+        $order_count= $orders[0]->order_count;
+        $CVR = floor($order_count/$PV*100);
+        $put_ips_info->CVR_num=$CVR;
+
+        $put_ips_info->save();
+
+    }
 
 
 }
