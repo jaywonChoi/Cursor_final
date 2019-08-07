@@ -16,9 +16,6 @@ class CursorController extends Controller
     //
     public function index()
     {
-
-      //$this->ip_read();
-      
       ///////////////////////////////////////////////////
       $products = Product::orderBy('updated_at','desc');
       $products = Product::all()->take(4);
@@ -90,6 +87,14 @@ class CursorController extends Controller
         $put_ips_info->save();
 
     }
+    public static function send_mail()
+    {
+
+      return view('emails/cron_email');
+
+    }
+
+
 
 
 }
