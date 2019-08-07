@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Http\Controllers\CursorController;
+use Mail;
+use Illuminate\Support\Facades\DB;
 
 class cron extends Command
 {
@@ -39,8 +41,31 @@ class cron extends Command
     public function handle()
     {
         //
-        CursorController::ip_read();
-        
+        //CursorController::ip_read();
+        //echo "string";
+        $timestamp = time();
+        if (date('N',$timestamp)=== '1') {
+          $today = date("Y-m-d",strtotime("-3 days"));
+
+        }
+        else {
+          $today = date("Y-m-d",strtotime("-1 days"));
+
+        }
+        //echo $today;
+        $report_ips = DB::table('i_ps')->where('created_at','like',$today.'%')->get();
+        foreach ($report_ips as $key => $value) {
+          $report_date = $value->report_date;
+          $PV_num = $value->PV_num;
+          $UU_num = $value->UU_num;
+          $CVR_num = $value->CVR_num;
+        }
+        //echo $report_date;
+      //  echo $PV_num;
+      //  echo $UU_num;
+      //  echo $CVR_num."%";
+  
+
 
     }
 }

@@ -18,6 +18,7 @@ class CursorController extends Controller
     {
 
       //$this->ip_read();
+      
       ///////////////////////////////////////////////////
       $products = Product::orderBy('updated_at','desc');
       $products = Product::all()->take(4);
@@ -44,10 +45,10 @@ class CursorController extends Controller
       return view('shop',compact('products'));
     }
 
-    public function ip_read()
+     public static function ip_read()
     {
       $put_ips_info = new IPs();
-      
+
       $timestamp = time();
       if (date('N',$timestamp)=== '1') {
         $today = date("Y-m-d",strtotime("-3 days"));
@@ -80,7 +81,7 @@ class CursorController extends Controller
 
          $orders = DB::table('orders')
         ->select(DB::raw('count(id) as order_count'))
-        ->where('created_at','like','2019-07-05%')->get();
+        ->where('created_at','like',$today.'%')->get();
 
         $order_count= $orders[0]->order_count;
         $CVR = floor($order_count/$PV*100);
