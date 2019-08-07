@@ -73,10 +73,10 @@ class cron extends Command
         Mail::send('emails.cron_email',[],function($message){
           $message->from('jaychoi1231@gmail.com');
           $message->to('choi@estore.co.jp');
-          $message->subject('IP_report');
+          $message->subject('アクセスレポート_チェジェウォン');
 
         });
-        $this->info('Test success!');
+        $this->info('success!');
 
 
     }
