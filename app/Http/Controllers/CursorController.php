@@ -81,13 +81,13 @@ class CursorController extends Controller
         ->where('created_at','like',$today.'%')->get();
 
         $order_count= $orders[0]->order_count;
-        $CVR = floor($order_count/$PV*100);
+        $CVR = round($order_count/$PV*100,2);
         $put_ips_info->CVR_num=$CVR;
 
         $put_ips_info->save();
 
     }
-    public static function send_mail()
+    public static function send_mail_form()
     {
 
       return view('emails/cron_email');

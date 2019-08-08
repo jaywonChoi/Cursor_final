@@ -1,13 +1,8 @@
 <?php
   $timestamp = time();
-  if (date('N',$timestamp)=== '1') {
-    $today = date("Y-m-d",strtotime("-3 days"));
 
-  }
-  else {
-    $today = date("Y-m-d",strtotime("-1 days"));
+    $today = date("Y-m-d");
 
-  }
   //echo $today;
   $data = DB::table('i_ps')->where('created_at','like',$today.'%')->get();
 
@@ -34,6 +29,7 @@
            <p>ユーザーのアクセス数（PV数）: <?= $PV  ?></p>
            <p>ユニークユーザーの数（UU数）: <?= $UU  ?></p>
            <p>コンバージョンレートの％（CVR数）: <?= $CVR  ?>%</p>
+
           </div>
         <?php endforeach; ?>
 
