@@ -41,13 +41,15 @@ class cron extends Command
     public function handle()
     {
         //
-        //CursorController::ip_read();
+        CursorController::ip_read();
         CursorController::send_mail_form();
 
+        //$message->cc('@estore.co.jp');
         Mail::send('emails.cron_email',[],function($message){
           $message->from('jaychoi1231@gmail.com');
           $message->to('choi@estore.co.jp');
           $message->subject('IPアクセスレポート_チェジェウォン');
+
 
         });
         $this->info('success!');
