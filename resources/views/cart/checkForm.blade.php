@@ -51,7 +51,7 @@
                 <label for="email"><i class="fa fa-envelope"></i>Email</label><br>
                 <input type="text" id="email" name="email" placeholder="john@example.com" value="{{Auth::user()->email}}"><br>
                 <label for="adr"><i class="fa fa-address-card-o"></i>郵便番号</label><br>
-                <input type="text" id="zip01" name="zip01"  maxlength="8" onkeyup="AjaxZip3.zip2addr(this,'','pref01','addr01');" placeholder="ハイフンも大丈夫です！"><br>
+                <input type="text" id="zip01" name="zip01"  maxlength="8" onkeyup="AjaxZip3.zip2addr(this,'','pref01','addr01');" placeholder="ハイフンも大丈夫です！"required><br>
                 <label for="city"><i class="fa fa-institution"></i>都道府県</label><br>
                 <input type="text"  name="pref01" id="pref01"><br>
                 <label for="city"><i class="fa fa-institution"></i>市区町村</label><br>
