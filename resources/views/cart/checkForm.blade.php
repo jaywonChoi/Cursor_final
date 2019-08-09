@@ -57,7 +57,7 @@
                 <label for="city"><i class="fa fa-institution"></i>市区町村</label><br>
                 <input type="text"  name="addr01" id="addr01"><br>
                 <label for="city"><i class="fa fa-institution"></i>その他住所</label><br>
-                <input type="text" id="city01" name="city01" placeholder="番地や建物名（部屋番号）"><br>
+                <input type="text" id="city01" name="city01" placeholder="番地や建物名（部屋番号）" required><br>
                 <label for="city"><i class="fa fa-institution"></i>お電話番号</label><br>
                 <input type="text" id="phone" name="phone" placeholder="030-0000-0000" value="{{Auth::user()->phone}}"><br>
                 @endif
@@ -71,7 +71,7 @@
 
                 </div>
                 <label for="cname">Name on Card</label><br>
-                <input type="text" id="cname" name="cname" placeholder="Yamada Taro"><br>
+                <input type="text" id="cname" name="cname" placeholder="Yamada Taro" required><br>
                 <p>カード番号は 4242 4242 4242 4242 で</p>
                 <p>月／ 年 CVC 好きな番号でお願いします。</p>
                   <label>
@@ -79,7 +79,7 @@
                     <div id="card-element" class="field"></div>
                   </label>
                     {{ csrf_field() }}
-                  <button type="submit">Pay </button>
+                  <button type="submit" class="w3-button w3-teal" >Pay </button>
                   <div class="outcome">
                    <div id="card-errors" role="alert"></div>
                   </div>

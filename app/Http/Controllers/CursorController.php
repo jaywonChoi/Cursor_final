@@ -90,7 +90,7 @@ class CursorController extends Controller
     public static function send_mail_form()
     {
 
-      return view('emails/cron_email');
+      return view('emails.cron_email');
 
     }
 

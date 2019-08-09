@@ -2,8 +2,10 @@
   $timestamp = time();
 
     $today = date("Y-m-d");
+
     $week = ['日','月','火','水','木','金','土'];
   //echo $today;
+  // TODAY PV,UU,CVR
   $data = DB::table('i_ps')->where('created_at','like',$today.'%')->get();
   foreach ($data as $key => $value){
     $reg_date = date('Y年m月d日',strtotime($value->report_date));
@@ -13,7 +15,17 @@
     $CVR= $value->CVR_num;
     $create_date =date('Y年m月d日',strtotime($value->created_at));
     $week_create_date =date('w',strtotime($value->created_at));
+    $create_orders = date('Y-m-d',strtotime($value->report_date));
+
+
   }
+  //orders
+  $orders = DB::table('orders')
+  ->select(DB::raw('count(id) as order_count'))
+  ->where('created_at','like',$create_orders.'%')->get();
+  $order_count= $orders[0]->order_count;
+
+
  ?>
 <html>
   <head>
@@ -30,6 +42,7 @@
               <p>ユーザーのアクセス数（PV数）: <?= $PV  ?></p>
               <p>ユニークユーザーの数（UU数）: <?= $UU  ?></p>
               <p>コンバージョンレートの％（CVR数）: <?= $CVR  ?>%</p>
+              <p>オーダー数：<?=$order_count ?>件</p>
             </div>
           </div>
     </div>
