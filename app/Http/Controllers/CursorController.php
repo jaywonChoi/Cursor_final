@@ -62,37 +62,45 @@ class CursorController extends Controller
 
       }
 
-      $get_ip = file('/etc/httpd/logs/access_log.'.$today,FILE_IGNORE_NEW_LINES|FILE_SKIP_EMPTY_LINES);
-      $log_put_arr = array();
-      foreach ($get_ip as $key => $get_ips) {
-        preg_match('/^(\S+)/',$get_ips, $matches);
-        array_push($log_put_arr,$matches[0]);
+      $get_ip = '/etc/httpd/logs/access_log.'.$today;
+      if (file_exists($get_ip)) {
+        $log_put_arr = array();
+        $get_ip_name=file('/etc/httpd/logs/access_log.'.$today);
+        foreach ($get_ip_name as $key => $get_ips) {
+          preg_match('/^(\S+)/',$get_ips, $matches);
+          array_push($log_put_arr,$matches[0]);
 
-        }
+          }
 
-        $PV= count($log_put_arr);
-        $put_ips_info->PV_num = $PV;
-        $ip_unique = array_unique($log_put_arr);
-        $UU= count($ip_unique);
-        $put_ips_info->UU_num =$UU;
+          $PV= count($log_put_arr);
+          $put_ips_info->PV_num = $PV;
+          $ip_unique = array_unique($log_put_arr);
+          $UU= count($ip_unique);
+          $put_ips_info->UU_num =$UU;
 
-         $orders = DB::table('orders')
-        ->select(DB::raw('count(id) as order_count'))
-        ->where('created_at','like',$today.'%')->get();
+           $orders = DB::table('orders')
+          ->select(DB::raw('count(id) as order_count'))
+          ->where('created_at','like',$today.'%')->get();
 
-        $order_count= $orders[0]->order_count;
-        $CVR = round($order_count/$PV*100,2);
-        $put_ips_info->CVR_num=$CVR;
+          $order_count= $orders[0]->order_count;
+          $CVR = round($order_count/$PV*100,2);
+          $put_ips_info->CVR_num=$CVR;
 
-        $put_ips_info->save();
+          $put_ips_info->save();
+          return view('emails.cron_email');
+      }
+      else {
+        return view('emails.nodata');
+      }
+
 
     }
-    public static function send_mail_form()
-    {
-
-      return view('emails.cron_email');
-
-    }
+    // public static function send_mail_form()
+    // {
+    //
+    //   return view('emails.cron_email');
+    //
+    // }
 
 
 

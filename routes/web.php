@@ -14,6 +14,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/email/nodata')->name('emails.nodata');
 Route::get('/email','CursorController@send_mail_form')->name('emails.cron_email');
 //main page
 Route::get('/cursor','CursorController@index')->name('Cursor');
