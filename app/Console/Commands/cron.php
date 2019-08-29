@@ -41,25 +41,25 @@ class cron extends Command
     public function handle()
     {
         //
-        CursorController::ip_read();
-        //CursorController::send_mail_form();
-
-    
-        Mail::send('emails.cron_email',[],function($message){
-          $message->from('jaychoi1231@gmail.com');
-          $message->to('takai@estore.co.jp');
-          $message->cc('y-ito@estore.co.jp');
-          $message->cc('f-maeda@estore.co.jp');
-          $message->cc('yagi@estore.co.jp');
-          $message->cc('kumamimi@estore.co.jp');
-          $message->cc('m-park@estore.co.jp');
-          $message->cc('mi-kim@estore.co.jp');
-          $message->cc('choi@estore.co.jp');
-          $message->subject('IPアクセスレポート_チェジェウォン');
-
-
-        });
-        $this->info('success!');
+        // CursorController::ip_read();
+        // //CursorController::send_mail_form();
+        //
+        //
+        // Mail::send('emails.cron_email',[],function($message){
+        //   $message->from('jaychoi1231@gmail.com');
+        //   $message->to('takai@estore.co.jp');
+        //   $message->cc('y-ito@estore.co.jp');
+        //   $message->cc('f-maeda@estore.co.jp');
+        //   $message->cc('yagi@estore.co.jp');
+        //   $message->cc('kumamimi@estore.co.jp');
+        //   $message->cc('m-park@estore.co.jp');
+        //   $message->cc('mi-kim@estore.co.jp');
+        //   $message->cc('choi@estore.co.jp');
+        //   $message->subject('IPアクセスレポート_チェジェウォン');
+        //
+        //
+        // });
+        // $this->info('success!');
 
 
     }

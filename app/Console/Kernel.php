@@ -36,11 +36,11 @@ class Kernel extends ConsoleKernel
         // ->dailyAt('10:00');
         // $schedule->command('command:send_report')
         // ->weekdays()->dailyAt('10:00');
-        $schedule->command('command:send_report')
-        ->withoutOverlapping()
-        ->weekdays()
-        ->dailyAt('10:00')
-        ->timezone('Asia/Tokyo');
+        // $schedule->command('command:send_report')
+        // ->withoutOverlapping()
+        // ->weekdays()
+        // ->dailyAt('10:00')
+        // ->timezone('Asia/Tokyo');
     }
 
     /**
